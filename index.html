@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Whelam Social Box</title>
+		<meta name="description" content="Simple Icon Hover Effects with CSS Transitions and Animations" />
+		<meta name="keywords" content="icons, hover, round, circular, transition, animation, css3" />
+		<meta name="author" content="Whelam" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="shortcut icon" href="./favicon.ico">
+	</head>
+	<body>
+		<div class="container">
+		    <header>
+			    <a href="#">
+				    <h1>[ Hello,Whelam ]</h1>
+			    </a>
+			    <!--
+			    <div class="description">
+			    	<img class="avatar" src="">
+			    	<ul>
+				    	<li></li>
+				    	<li></li>
+				    	<li></li>
+			    	</ul>
+			    </div>
+			    -->
+		    </header>
+			<section id="bgblack">
+				<div class="fa-wrap fa-effect">
+					<a href="http://weibo.com/" class="fa fa-weibo" alt="weibo" target="_blank">weibo</a>
+					<a href="http://tumblr.com/" class="fa fa-tumblr" alt="tumblr" target="_blank">tumblr</a>
+					<a href="http://twitter.com/" class="fa fa-twitter" alt="twitter" target="_blank">twitter</a>
+					<a href="http://facebook.com/" class="fa fa-facebook" alt="facebook" target="_blank">facebook</a>
+					<a href="https://instagram.com/" class="fa fa-instagram" alt="instagram" target="_blank">instagram</a>
+					<a href="http://whelamc.me/" class="fa fa-home" alt="home" target="_blank">home</a>
+					<a href="http://dropbox.com/" class="fa fa-dropbox" alt="dropbox" target="_blank">dropbox</a>
+					<a href="https://mail.google.com/" class="fa fa-google" alt="gmail" target="_blank">gmail</a>
+					<a href="http://youtube.com/" class="fa fa-youtube" alt="youtube" target="_blank">youtube</a>
+					<a href="https://www.pinterest.com/" class="fa fa-pinterest" alt="pinterest" target="_blank">pinterest</a>
+				</div>
+			</section>
+		</div><!-- container -->
+        <canvas width="1920" height="969"></canvas>
+        <!-- background canvas change-->
+	</body>
+	<script type="text/javascript">
+	      document.addEventListener('touchmove', function (e) {
+	          e.preventDefault()
+	      })
+	      var c = document.getElementsByTagName('canvas')[0],
+	          x = c.getContext('2d'),
+	          pr = window.devicePixelRatio || 1,
+	          w = window.innerWidth,
+	          h = window.innerHeight,
+	          f = 90,
+	          q,
+	          m = Math,
+	          r = 0,
+	          u = m.PI*2,
+	          v = m.cos,
+	          z = m.random
+	      c.width = w*pr
+	      c.height = h*pr
+	      x.scale(pr, pr)
+	      x.globalAlpha = 0.6
+	      function i(){
+	          x.clearRect(0,0,w,h)
+	          q=[{x:0,y:h*.7+f},{x:0,y:h*.7-f}]
+	          while(q[1].x<w+f) d(q[0], q[1])
+	      }
+	      function d(i,j){   
+	          x.beginPath()
+	          x.moveTo(i.x, i.y)
+	          x.lineTo(j.x, j.y)
+	          var k = j.x + (z()*2-0.25)*f,
+	              n = y(j.y)
+	          x.lineTo(k, n)
+	          x.closePath()
+	          r-=u/-50
+	          x.fillStyle = '#'+(v(r)*127+128<<16 | v(r+u/3)*127+128<<8 | v(r+u/3*2)*127+128).toString(16)
+	          x.fill()
+	          q[0] = q[1]
+	          q[1] = {x:k,y:n}
+	      }
+	      function y(p){
+	          var t = p + (z()*2-1.1)*f
+	          return (t>h||t<0) ? y(p) : t
+	      }
+	      //document.onmousemove = i
+	      document.ontouchstart = i
+	      //add the a:hover trigger the function
+	      $("section a").hover(function (){
+	      	i();
+	      })
+	      i()
+
+	</script>
+</html>
